@@ -43,26 +43,20 @@ jobs:
               with:
                   tag: "0.1.0"
 
-            - name: Create tag
+            - name: Create initial tag
               if: ${{ steps.checkTag.outputs.exists == 'false' }}
-              uses: tvdias/github-tagger@v0.0.2
-              with:
-                  repo-token: ${{ secrets.GITHUB_TOKEN }}
-                  tag: "0.1.0"
-                  commit-sha: ${{ steps.firstCommit.outputs.FIRST_COMMIT }}
+              env:
+                  TAG: "0.1.0"
+                  COMMIT_SHA: ${{ steps.firstCommit.outputs.FIRST_COMMIT }}
+              run: |
+                  git tag "$TAG" "$COMMIT_SHA"
+                  git push origin "refs/tags/$TAG"
 
             - name: Get new version
               id: newVersion
               run: npx --yes semantic-release@22 --branches main --dry-run
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-            - name: Get latest framework version
-              id: latestFramework
-              uses: pozetroninc/github-action-get-latest-release@v0.7.0
-              with:
-                  repository: atampy25/simple-mod-framework
-                  token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Update manifest.json version
               if: ${{ steps.newVersion.outputs.new-release-version }}
@@ -71,14 +65,6 @@ jobs:
                   file: "manifest.json"
                   field: "version"
                   value: ${{ steps.newVersion.outputs.new-release-version }}
-
-            - name: Update manifest.json frameworkVersion
-              if: ${{ steps.newVersion.outputs.new-release-version }}
-              uses: jossef/action-set-json-field@v2
-              with:
-                  file: "manifest.json"
-                  field: "frameworkVersion"
-                  value: ${{ steps.latestFramework.outputs.release }}
 
             - name: Update manifest.json updateCheck
               if: ${{ steps.newVersion.outputs.new-release-version }}
@@ -143,12 +129,6 @@ jobs:
                       `${{ steps.modID.outputs.prop }}` v${{ steps.newVersion.outputs.new-release-version }}, by ${{ join(fromJSON(steps.modAuthors.outputs.prop), ', ') }}. This README was automatically generated from the mod's manifest.
                   write-mode: overwrite
 
-            - name: Format
-              if: ${{ steps.newVersion.outputs.new-release-version }}
-              uses: actionsx/prettier@v2
-              with:
-                  args: --write .
-
             - name: Commit changes
               if: ${{ steps.newVersion.outputs.new-release-version }}
               uses: EndBug/add-and-commit@v9.1.0
@@ -173,8 +153,9 @@ jobs:
               run: |
                   mkdir $TARGETDIR
                   for file in *;do test "$file" != "$TARGETDIR" && cp -r "$file" "$TARGETDIR/";done
-                  rm -rf "$TARGETDIR/node_modules"
+                  rm -rf "$TARGETDIR/node_modules" "$TARGETDIR/src"
                   rm "$TARGETDIR/package.json" "$TARGETDIR/package-lock.json" "$TARGETDIR/README.md"
+                  rm -f "$TARGETDIR/features.txt"
 
             - name: Create ZIP
               if: ${{ steps.newVersion.outputs.new-release-version }}
