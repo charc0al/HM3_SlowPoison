@@ -1,0 +1,59 @@
+{
+	"tempHash": "00FEA47AB930892C",
+	"tbluHash": "002B9D5FE1222783",
+	"patch": [
+		{
+			"SubEntityOperation": [
+				"aca1699ece80ed8a",
+				{
+					"RemoveAllEventConnectionsForTrigger": [
+						"Value",
+						"Start"
+					]
+				}
+			]
+		},
+		{
+			"SubEntityOperation": [
+				"aca1699ece80ed8a",
+				{
+					"AddEventConnection": [
+						"Value",
+						"In",
+						"cafe0e08dbd2e493"
+					]
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"cafe41dacf34e7bf",
+				{
+					"parent": "3093f4331c4fcc7b",
+					"name": "Charc0al_SlowPoisons",
+					"factory": "[modules:/zentity.class].pc_entitytype",
+					"blueprint": "[modules:/zentity.class].pc_entityblueprint"
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"cafe0e08dbd2e493",
+				{
+					"parent": "cafe41dacf34e7bf",
+					"name": "TimerSimple_PoisonDelay",
+					"factory": "[assembly:/_pro/design/logic.template?/timersimple.entitytemplate].pc_entitytype",
+					"blueprint": "[assembly:/_pro/design/logic.template?/timersimple.entitytemplate].pc_entityblueprint",
+					"properties": {
+						"Delay time (ms)": {
+							"type": "int32",
+							"value": 30000
+						}
+					},
+					"events": { "Out": { "Start": ["6f9b0251567ed623"] } }
+				}
+			]
+		}
+	],
+	"patchVersion": 6
+}
