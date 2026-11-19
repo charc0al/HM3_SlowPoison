@@ -1,9 +1,40 @@
 {
-	"$schema": "https://raw.githubusercontent.com/atampy25/simple-mod-framework/main/Mod%20Manager/src/lib/manifest-schema.json",
-	"version": "0.1.0",
-	"id": "Charc0al.SlowPoisons",
-	"name": "Slow Poison",
-	"description": "Makes poison effects on NPCs not take effect immediately",
-	"authors": ["Charc0al"],
-	"frameworkVersion": "2.25.1"
+  "$schema": "https://raw.githubusercontent.com/atampy25/simple-mod-framework/main/Mod%20Manager/src/lib/manifest-schema.json",
+  "version": "0.1.0",
+  "id": "Charc0al.SlowPoisons",
+  "name": "Slow Poison",
+  "description": "Makes poison effects on NPCs not take effect immediately",
+  "authors": [
+    "Charc0al"
+  ],
+  "frameworkVersion": "2.25.1",
+  "options": [
+    {
+      "name": "Injected",
+      "tooltip": "Delay effects of injected poisons",
+      "type": "checkbox",
+      "enabledByDefault": true,
+      "contentFolders": [
+        "content/injected"
+      ]
+    },
+    {
+      "name": "Consumed",
+      "tooltip": "Delay effects of consumed poisons",
+      "type": "checkbox",
+      "enabledByDefault": true,
+      "contentFolders": [
+        "content/consumed"
+      ]
+    },
+    {
+      "name": "Dart Guns",
+      "tooltip": "Delay effects of dart gun poisons",
+      "type": "checkbox",
+      "enabledByDefault": true,
+      "contentFolders": [
+        "content/dart_guns"
+      ]
+    }
+  ]
 }

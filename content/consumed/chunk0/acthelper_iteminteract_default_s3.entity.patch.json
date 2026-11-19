@@ -1,0 +1,18 @@
+{
+	"tempHash": "00F0F58E674E390B",
+	"tbluHash": "0029F3813A09A3E7",
+	"patch": [
+		{
+			"SubEntityOperation": [
+				"760cf7392e79e573",
+				{
+					"SetPropertyValue": {
+						"property_name": "FastIncubationTime",
+						"value": 30
+					}
+				}
+			]
+		}
+	],
+	"patchVersion": 6
+}
