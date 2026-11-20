@@ -1,0 +1,18 @@
+{
+	"tempHash": "0017CC75BDE8DA3E",
+	"tbluHash": "007FE5EF2A1B59F1",
+	"patch": [
+		{
+			"SubEntityOperation": [
+				"d33a4db200aa4c08",
+				{
+					"SetPropertyValue": {
+						"property_name": "m_nTimeLimit3",
+						"value": 30
+					}
+				}
+			]
+		}
+	],
+	"patchVersion": 6
+}

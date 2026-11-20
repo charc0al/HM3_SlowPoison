@@ -10,30 +10,30 @@
   "frameworkVersion": "2.25.1",
   "options": [
     {
-      "name": "Injected",
-      "tooltip": "Delay effects of injected poisons",
+      "name": "Lethal",
+      "tooltip": "30 second delay for lethal poisons",
       "type": "checkbox",
       "enabledByDefault": true,
       "contentFolders": [
-        "content/injected"
+        "content/lethal"
       ]
     },
     {
-      "name": "Consumed",
-      "tooltip": "Delay effects of consumed poisons",
+      "name": "Emetic",
+      "tooltip": "30 second delay for emetic poisons",
       "type": "checkbox",
       "enabledByDefault": true,
       "contentFolders": [
-        "content/consumed"
+        "content/emetic"
       ]
     },
     {
-      "name": "Dart Guns",
-      "tooltip": "Delay effects of dart gun poisons",
+      "name": "Sedative",
+      "tooltip": "30 second delay for sedative poisons",
       "type": "checkbox",
       "enabledByDefault": true,
       "contentFolders": [
-        "content/dart_guns"
+        "content/sedative"
       ]
     }
   ],
