@@ -1,0 +1,117 @@
+{
+	"tempHash": "00AB73FD23AE57ED",
+	"tbluHash": "002A5B136297F08C",
+	"patch": [
+		{
+			"SubEntityOperation": [
+				"ff2ad636457bf126",
+				{
+					"RemoveAllEventConnectionsForTrigger": [
+						"Out",
+						"TriggerPoison"
+					]
+				}
+			]
+		},
+		{
+			"SubEntityOperation": [
+				"ff2ad636457bf126",
+				{
+					"RemoveAllEventConnectionsForTrigger": [
+						"Out",
+						"UseEquipped"
+					]
+				}
+			]
+		},
+		{
+			"SubEntityOperation": [
+				"ff2ad636457bf126",
+				{ "RemoveAllEventConnectionsForTrigger": ["Out", "Poll"] }
+			]
+		},
+		{
+			"SubEntityOperation": [
+				"ff2ad636457bf126",
+				{ "AddEventConnection": ["Out", "In", "cafe09e01dfff18e"] }
+			]
+		},
+		{
+			"SubEntityOperation": [
+				"a4eaca8369ca94fc",
+				{
+					"AddEventConnection": [
+						"Equipped",
+						"GetKeyword",
+						"94c9d26a6b7c8a18"
+					]
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"cafe72a86a4baa8d",
+				{
+					"parent": "852cdffee3e1ecd0",
+					"name": "Charc0al_SlowPoisons",
+					"factory": "[modules:/zentity.class].pc_entitytype",
+					"blueprint": "[modules:/zentity.class].pc_entityblueprint"
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"cafea878d1b19a4b",
+				{
+					"parent": "cafe72a86a4baa8d",
+					"name": "Keyword_ClearInjectionMarker",
+					"factory": "[assembly:/_pro/design/gamecore/keywords/keyworditems.template?/keyword_item_poison_sick.entitytemplate].pc_entitytype",
+					"blueprint": "[assembly:/_pro/design/gamecore/keywords/keyworditems.template?/keyword_item_poison_sick.entitytemplate].pc_entityblueprint",
+					"events": {
+						"Keyword": {
+							"RemoveKeyword": ["245220db357def6c"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"cafe59b186df89ec",
+				{
+					"parent": "cafe72a86a4baa8d",
+					"name": "ValueBool_Poll_KeepRealEmetic",
+					"factory": "[assembly:/_pro/design/logic/valuebool.template?/valuebool_poll.entitytemplate].pc_entitytype",
+					"blueprint": "[assembly:/_pro/design/logic/valuebool.template?/valuebool_poll.entitytemplate].pc_entityblueprint",
+					"properties": {
+						"m_rValueEntity": {
+							"type": "SEntityTemplateReference",
+							"value": "5ee9fb6d86ee8014"
+						}
+					},
+					"events": {
+						"PollFalse": { "GetKeyword": ["cafea878d1b19a4b"] }
+					}
+				}
+			]
+		},
+		{
+			"AddEntity": [
+				"cafe09e01dfff18e",
+				{
+					"parent": "cafe72a86a4baa8d",
+					"name": "SignalFork_Void_TriggerPoison",
+					"factory": "[modules:/zsignalforkentity_void.class].pc_entitytype",
+					"blueprint": "[modules:/zsignalforkentity_void.class].pc_entityblueprint",
+					"events": {
+						"Out01": { "Poll": ["cafe59b186df89ec"] },
+						"Out02": { "TriggerPoison": ["eba0829110d5d823"] },
+						"Out03": { "UseEquipped": ["57322c8b0d2ac273"] },
+						"Out04": { "Poll": ["e72877883653cc89"] }
+					}
+				}
+			]
+		}
+	],
+	"patchVersion": 6
+}

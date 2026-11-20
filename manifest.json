@@ -37,5 +37,8 @@
       ]
     }
   ],
-  "updateCheck": "https://github.com/charc0al/HM3_SlowPoison/releases/latest/download/updates.json"
+  "updateCheck": "https://github.com/charc0al/HM3_SlowPoison/releases/latest/download/updates.json",
+  "contentFolders": [
+    "content/main"
+  ]
 }
